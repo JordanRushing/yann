@@ -15,6 +15,12 @@ except ImportError:
 if nx_installed is True:
     import networkx as nx
 
+# for xrange python2 and 3 compatability
+try:
+    xrange
+except NameError:
+    xrange = range
+
 import time
 from collections import OrderedDict
 
@@ -2172,13 +2178,13 @@ class network(object):
             cost = numpy.mean(self.cost[-1 *
                                 self.batches2train * self.mini_batches_per_batch[0]:])
 
-        lr = self.learning_rate.get_value(borrow =  self.borrow)
-        mom = self.current_momentum(epoch)
+            lr = self.learning_rate.get_value(borrow =  self.borrow)
+            mom = self.current_momentum(epoch)
 
         self.cooked_resultor.process_results(cost = cost,
-                                           lr = lr,
-                                           mom = mom,
-                                           verbose = verbose)
+                                             lr = lr,
+                                             mom = mom,
+                                             verbose = verbose)
 
     def _print_layer (self, id, prefix = " ", nest = True, last = True):
         """
