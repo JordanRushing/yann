@@ -107,9 +107,9 @@ class optimizer (module):
 
         self.epoch = T.scalar('epoch')
         self.momentum = ifelse(self.epoch <= self.momentum_epoch_end,
-                        self.momentum_start * (1.0 - self.epoch / self.momentum_epoch_end) +
-                        self.momentum_end * (self.epoch / self.momentum_epoch_end),
-                        self.momentum_end)
+                               self.momentum_start * (1.0 - self.epoch / self.momentum_epoch_end) +
+                               self.momentum_end * (self.epoch / self.momentum_epoch_end),
+                               self.momentum_end)
 
         if verbose >= 3:
             print("... Creating learning rate")
@@ -132,17 +132,17 @@ class optimizer (module):
             print("... Estimating gradients")
 
         self.gradients = []
-        for param in params:  
-            if verbose >=3 :           
-                print ".. Estimating gradient of parameter ", 
-                print param 
+        for param in params:
+            if verbose >=3 :
+                print ".. Estimating gradient of parameter ",
+                print param
             try:
                 gradient = T.grad(objective, param)
                 self.gradients.append(gradient)
             except:
+                print(param)
                 raise Exception("Cannot learn a layer that is disconnected with objective. " +
                         "Try cooking again by making the particular layer learnable as False")
-
 
     def create_updates(self, params, verbose = 1):
         """
@@ -164,20 +164,32 @@ class optimizer (module):
             print("... creating internal parameters for all the optimizations")
         velocities = []
         for param in params:
-            if verbose >=3 :           
+<<<<<<< HEAD
+            if verbose >=3 :
                 print ".. Estimating velocity  of parameter ",
-                print param 
+                print param
+=======
+            if verbose >= 3:
+                print(".. Estimating velocity  of parameter "),
+                print(param)
+>>>>>>> Adjust print for python3 during quick-start walkthrough
             velocity = theano.shared(numpy.zeros(param.get_value(borrow=True).shape,
-                                                                dtype=theano.config.floatX))
+                                                 dtype=theano.config.floatX))
             velocities.append(velocity)
 
         # these are used for second order optimizers.
         accumulator_1 = []
         accumulator_2 = []
         for param in params:
-            if verbose >=3 :           
-                print ".. Accumulating gradinent of parameter " , 
-                print param 
+<<<<<<< HEAD
+            if verbose >=3 :
+                print ".. Accumulating gradinent of parameter " ,
+                print param
+=======
+            if verbose >= 3:
+                print(".. Accumulating gradinent of parameter "),
+                print(param)
+>>>>>>> Adjust print for python3 during quick-start walkthrough
             eps = numpy.zeros_like(param.get_value(borrow=True), dtype=theano.config.floatX)
             accumulator_1.append(theano.shared(eps, borrow=True))
             accumulator_2.append(theano.shared(eps, borrow=True))
@@ -191,7 +203,7 @@ class optimizer (module):
 
         # to avoid division by zero
         fudge_factor = 1e-7
-        if verbose >=3:
+        if verbose >= 3:
             print("... Building backprop network.")
 
         # This is copied straight from my old toolbox: Samosa. I hope this is working correctly.
@@ -202,10 +214,17 @@ class optimizer (module):
             print("... Applying " + self.momentum_type)
         self.updates = OrderedDict()
         for velocity, gradient, acc_1, acc_2, param in zip(velocities, self.gradients,
+<<<<<<< HEAD
                                                         accumulator_1, accumulator_2, params):
-            if verbose >=3 :           
-                print ".. Backprop of parameter ", 
-                print param 
+            if verbose >=3 :
+                print ".. Backprop of parameter ",
+                print param
+=======
+                                                           accumulator_1, accumulator_2, params):
+            if verbose >= 3:
+                print(".. Backprop of parameter "),
+                print(param)
+>>>>>>> Adjust print for python3 during quick-start walkthrough
 
             if self.optimizer_type == 'adagrad':
 
@@ -246,7 +265,7 @@ class optimizer (module):
 
             elif self.momentum_type == 'false':  # no momentum
                 self.updates[velocity] = - (self.learning_rate / T.sqrt(current_acc_1 +
-                                                                        fudge_factor)) * gradient
+                                            fudge_factor)) * gradient
             elif self.momentum_type == 'polyak':  # if polyak momentum
                 """ Momentum implemented from paper:
                 Polyak, Boris Teodorovich. "Some methods of speeding up the convergence of

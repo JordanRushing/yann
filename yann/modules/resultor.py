@@ -18,7 +18,8 @@ class resultor(module):
                     "results"   : "<results_file_name>.txt",
                     "errors"    : "<error_file_name>.txt",
                     "costs"     : "<cost_file_name>.txt",
-                    "confusion" : "<confusion_file_name>.txt",
+                    "confusion" : "<confusion               print param
+_file_name>.txt",
                     "network"   : "<network_save_file_name>.pkl"
                     "learning_rate" : "<learning_rate_file_name>.txt"
                     "momentum"  : <momentum_file_name>.txt
