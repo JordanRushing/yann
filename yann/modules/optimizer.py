@@ -133,9 +133,9 @@ class optimizer (module):
 
         self.gradients = []
         for param in params:
-            if verbose >=3 :
-                print ".. Estimating gradient of parameter ",
-                print param
+            if verbose >= 3:
+                print(".. Estimating gradient of parameter "),
+                print(param)
             try:
                 gradient = T.grad(objective, param)
                 self.gradients.append(gradient)
@@ -165,6 +165,7 @@ class optimizer (module):
         velocities = []
         for param in params:
 <<<<<<< HEAD
+<<<<<<< HEAD
             if verbose >=3 :
                 print ".. Estimating velocity  of parameter ",
                 print param
@@ -173,6 +174,11 @@ class optimizer (module):
                 print(".. Estimating velocity  of parameter "),
                 print(param)
 >>>>>>> Adjust print for python3 during quick-start walkthrough
+=======
+            if verbose >= 3:
+                print(".. Estimating velocity  of parameter "),
+                print(param)
+>>>>>>> 715176cc4e41c2ffd1935989a188ed95707f4db0
             velocity = theano.shared(numpy.zeros(param.get_value(borrow=True).shape,
                                                  dtype=theano.config.floatX))
             velocities.append(velocity)
@@ -182,6 +188,7 @@ class optimizer (module):
         accumulator_2 = []
         for param in params:
 <<<<<<< HEAD
+<<<<<<< HEAD
             if verbose >=3 :
                 print ".. Accumulating gradinent of parameter " ,
                 print param
@@ -190,6 +197,11 @@ class optimizer (module):
                 print(".. Accumulating gradinent of parameter "),
                 print(param)
 >>>>>>> Adjust print for python3 during quick-start walkthrough
+=======
+            if verbose >= 3:
+                print(".. Accumulating gradinent of parameter "),
+                print(param)
+>>>>>>> 715176cc4e41c2ffd1935989a188ed95707f4db0
             eps = numpy.zeros_like(param.get_value(borrow=True), dtype=theano.config.floatX)
             accumulator_1.append(theano.shared(eps, borrow=True))
             accumulator_2.append(theano.shared(eps, borrow=True))
@@ -215,16 +227,22 @@ class optimizer (module):
         self.updates = OrderedDict()
         for velocity, gradient, acc_1, acc_2, param in zip(velocities, self.gradients,
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                         accumulator_1, accumulator_2, params):
             if verbose >=3 :
                 print ".. Backprop of parameter ",
                 print param
 =======
+=======
+>>>>>>> 715176cc4e41c2ffd1935989a188ed95707f4db0
                                                            accumulator_1, accumulator_2, params):
             if verbose >= 3:
                 print(".. Backprop of parameter "),
                 print(param)
+<<<<<<< HEAD
 >>>>>>> Adjust print for python3 during quick-start walkthrough
+=======
+>>>>>>> 715176cc4e41c2ffd1935989a188ed95707f4db0
 
             if self.optimizer_type == 'adagrad':
 
