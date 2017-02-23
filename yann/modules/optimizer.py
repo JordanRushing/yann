@@ -132,10 +132,17 @@ class optimizer (module):
             print("... Estimating gradients")
 
         self.gradients = []
+<<<<<<< HEAD
         for param in params:
             if verbose >= 3:
                 print(".. Estimating gradient of parameter "),
                 print(param)
+=======
+        for param in params:  
+            if verbose >=3 :           
+                print "... Estimating gradient of parameter ", 
+                print param 
+>>>>>>> upstream/dev
             try:
                 gradient = T.grad(objective, param)
                 self.gradients.append(gradient)
@@ -166,6 +173,7 @@ class optimizer (module):
         for param in params:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             if verbose >=3 :
                 print ".. Estimating velocity  of parameter ",
                 print param
@@ -179,6 +187,11 @@ class optimizer (module):
                 print(".. Estimating velocity  of parameter "),
                 print(param)
 >>>>>>> 715176cc4e41c2ffd1935989a188ed95707f4db0
+=======
+            if verbose >=3 :           
+                print "... Estimating velocity  of parameter ",
+                print param 
+>>>>>>> upstream/dev
             velocity = theano.shared(numpy.zeros(param.get_value(borrow=True).shape,
                                                  dtype=theano.config.floatX))
             velocities.append(velocity)
@@ -187,6 +200,7 @@ class optimizer (module):
         accumulator_1 = []
         accumulator_2 = []
         for param in params:
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             if verbose >=3 :
@@ -202,6 +216,11 @@ class optimizer (module):
                 print(".. Accumulating gradinent of parameter "),
                 print(param)
 >>>>>>> 715176cc4e41c2ffd1935989a188ed95707f4db0
+=======
+            if verbose >=3 :           
+                print "... Accumulating gradinent of parameter " , 
+                print param 
+>>>>>>> upstream/dev
             eps = numpy.zeros_like(param.get_value(borrow=True), dtype=theano.config.floatX)
             accumulator_1.append(theano.shared(eps, borrow=True))
             accumulator_2.append(theano.shared(eps, borrow=True))
@@ -229,6 +248,7 @@ class optimizer (module):
 <<<<<<< HEAD
 <<<<<<< HEAD
                                                         accumulator_1, accumulator_2, params):
+<<<<<<< HEAD
             if verbose >=3 :
                 print ".. Backprop of parameter ",
                 print param
@@ -243,6 +263,11 @@ class optimizer (module):
 >>>>>>> Adjust print for python3 during quick-start walkthrough
 =======
 >>>>>>> 715176cc4e41c2ffd1935989a188ed95707f4db0
+=======
+            if verbose >=3 :           
+                print "... Backprop of parameter ", 
+                print param 
+>>>>>>> upstream/dev
 
             if self.optimizer_type == 'adagrad':
 
